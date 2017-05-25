@@ -7,12 +7,23 @@ from time import gmtime, strftime
 import time
 from datetime import datetime
 
-date = strftime("%d.%m.%Y %H:%M:%S", gmtime())
-#print date
+def check_time():
+    """
+    This function return exact time.
+    """
+    date = strftime("%d.%m.%Y %H:%M:%S", gmtime())
+    return date
 
-d = datetime.strptime(date, "%d.%m.%Y %H:%M:%S")
-ts = time.mktime(d.timetuple())
-#print int(ts)
+def code_time():
+    """
+    This function return coded time by timestamp coding
+    """
+    d = datetime.strptime(check_time(), "%d.%m.%Y %H:%M:%S")
+    ts = time.mktime(d.timetuple())
+    return int(ts)
+
+print check_time()
+print code_time()
 
 
 # Authenticate via OAuth
@@ -23,7 +34,7 @@ client = pytumblr.TumblrRestClient(
     token_secret
 )
 
-main_list = client.tagged('sience', before=ts)
+main_list = client.tagged('sience', before=code_time())
 
 prime_dict = {}
 for i in main_list:
