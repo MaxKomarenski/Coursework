@@ -9,7 +9,6 @@ from datetime import datetime
 
 date = strftime("%d.%m.%Y %H:%M:%S", gmtime()) #exact time.
 
-
 def code_time():
     """
     This function return number of coded time by timestamp coding.
@@ -25,7 +24,7 @@ client = pytumblr.TumblrRestClient(
     token_secret
 )
 
-main_list = client.tagged('sience', before=code_time())
+main_list = client.tagged("lol") # Here you have to write the topic,that you wont to see
 
 prime_dict = {}
 
@@ -42,7 +41,12 @@ def main_dict():
             prime_dict[i['note_count']].add(i["post_url"])
     return prime_dict
 
+def result():
+    """
+    This function return sorted top of posts of current topic. 
+    """
+    for i in reversed(sorted(main_dict().keys())):
+        for j in main_dict()[i]:
+            print i, "-", j
 
-for i in reversed(main_dict().keys()):
-    for j in main_dict()[i]:
-        print i, "-", j
+print result()
