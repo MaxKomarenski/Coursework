@@ -27,7 +27,7 @@ class TumblerProgram():
         """
         This function return number of coded time by timestamp coding.
         """
-        d = datetime.strptime(date, "%d.%m.%Y %H:%M:%S")
+        d = datetime.strptime(self.exact_time(), "%d.%m.%Y %H:%M:%S")
         ts = time.mktime(d.timetuple())
         return int(ts)
 
